@@ -145,8 +145,11 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && $APT_INSTALL nodejs && \
     jupyter labextension install @jupyterlab/toc && \
     jupyter labextension install @jupyterlab/git && jupyter serverextension enable --py jupyterlab_git && \
-    jupyter labextension install jupyterlab_tensorboard
-    
+    jupyter labextension install jupyterlab_tensorboard && \
+    # fix issue with tqdm_notebook not showing HBox widget
+    jupyter nbextension enable --py widgetsnbextension && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
 EXPOSE 8888 6006
 
 CMD ["sh", "-c", "jupyter lab --port=9999 --no-browser --ip=0.0.0.0 --allow-root"]
