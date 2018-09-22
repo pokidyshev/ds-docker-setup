@@ -141,14 +141,12 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     $PIP_INSTALL \
         jupyterlab-git \
         jupyter-tensorboard \
-        flake8 \
         && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && $APT_INSTALL nodejs && \
     jupyter labextension install @jupyterlab/toc && \
     jupyter labextension install @jupyterlab/git && jupyter serverextension enable --py jupyterlab_git && \
-    jupyter labextension install jupyterlab_tensorboard && \
-    jupyter labextension install jupyterlab-flake8
-
+    jupyter labextension install jupyterlab_tensorboard
+    
 EXPOSE 8888 6006
 
 CMD ["sh", "-c", "jupyter lab --port=9999 --no-browser --ip=0.0.0.0 --allow-root"]
