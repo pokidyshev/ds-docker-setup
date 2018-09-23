@@ -1,35 +1,30 @@
 # Source: https://github.com/ufoym/deepo
-# ==================================================================
-# module list
-# ------------------------------------------------------------------
-# python        3.6    (apt)
-# jupyter       latest (pip)
-# pytorch       latest (pip)
-# tensorflow    latest (pip)
-# keras         latest (pip)
-# ==================================================================
 
 FROM ubuntu:16.04
+
+RUN rm -rf /var/lib/apt/lists/* \
+        /etc/apt/sources.list.d/cuda.list \
+        /etc/apt/sources.list.d/nvidia-ml.list && \
+    apt-get update && \
+    # Avoid warning "debconf: delaying package configuration, since apt-utils is not installed"
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils
+
 RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     PIP_INSTALL="python -m pip --no-cache-dir install --upgrade" && \
-    GIT_CLONE="git clone --depth 10" && \
-    rm -rf /var/lib/apt/lists/* \
-           /etc/apt/sources.list.d/cuda.list \
-           /etc/apt/sources.list.d/nvidia-ml.list && \
-    apt-get update && \
 # ==================================================================
 # tools
 # ------------------------------------------------------------------
     DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
-        apt-utils \
         build-essential \
         ca-certificates \
         cmake \
+        htop \
         wget \
         curl \
         git \
         vim \
         zip \
+        unzip \
         && \
 # ==================================================================
 # python
@@ -88,7 +83,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         tensorboardX  \
         && \
     # fast.ai dependecies
-    $APT_INSTALL libsm6 libxext6 libxrender-dev && \
+    DEBIAN_FRONTEND=noninteractive $APT_INSTALL libsm6 libxext6 libxrender-dev && \
 # ==================================================================
 # keras
 # ------------------------------------------------------------------
@@ -139,31 +134,32 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         tqdm \
         && \
 # ==================================================================
-# config & cleanup
-# ------------------------------------------------------------------
-    ldconfig && \
-    apt-get clean && \
-    apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/* /tmp/* ~/* \
-    && \
-# ==================================================================
 # Jupyter lab tweaks
 # ------------------------------------------------------------------
     $PIP_INSTALL \
         jupyterlab-git \
         jupyter-tensorboard \
         && \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && $APT_INSTALL nodejs && \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    DEBIAN_FRONTEND=noninteractive $APT_INSTALL nodejs && \
     jupyter labextension install @jupyterlab/toc && \
     jupyter labextension install @jupyterlab/git && jupyter serverextension enable --py jupyterlab_git && \
     jupyter labextension install jupyterlab_tensorboard && \
-    # fix issue with tqdm_notebook not showing HBox widget
+    # Fix issue with tqdm_notebook not showing HBox widget
     jupyter nbextension enable --py widgetsnbextension && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager
 # Copy old user settings
 COPY jupyterlab-user-settings.zip .
-RUN mkdirs .jupyter/lab && \
-    unzip jupyterlab-user-settings.zip -d .jupyter/lab
+RUN mkdir -p .jupyter/lab && \
+    unzip jupyterlab-user-settings.zip -d .jupyter/lab && \
+    rm -rf jupyterlab-user-settings.zip
+# ==================================================================
+# config & cleanup
+# ------------------------------------------------------------------
+RUN ldconfig && \
+    apt-get clean && \
+    apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/* /tmp/* ~/*
 
 EXPOSE 8888 6006
 
