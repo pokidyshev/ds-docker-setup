@@ -29,6 +29,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         curl \
         git \
         vim \
+        zip \
         && \
 # ==================================================================
 # python
@@ -159,6 +160,10 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     # fix issue with tqdm_notebook not showing HBox widget
     jupyter nbextension enable --py widgetsnbextension && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager
+# Copy old user settings
+COPY jupyterlab-user-settings.zip .
+RUN mkdirs .jupyter/lab && \
+    unzip jupyterlab-user-settings.zip -d .jupyter/lab
 
 EXPOSE 8888 6006
 
