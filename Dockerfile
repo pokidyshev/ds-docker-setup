@@ -74,13 +74,20 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         tensorboard \
         && \
 # ==================================================================
-# pytorch
+# pytorch & fast.ai
 # ------------------------------------------------------------------
     $PIP_INSTALL \
-        torch \
-        torchvision \
+        # fastai \
+        git+https://github.com/fastai/fastai.git \
+        # fast.ai dependecy
+        opencv-python \
+        # doesn't need this since fast.ai is buit on top of pytorch
+        # torch \
+        # torchvision \
         tensorboardX  \
         && \
+    # fast.ai dependecies
+    $APT_INSTALL libsm6 libxext6 libxrender-dev && \
 # ==================================================================
 # keras
 # ------------------------------------------------------------------
