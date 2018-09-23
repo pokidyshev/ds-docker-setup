@@ -109,11 +109,14 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # NLP
 # ------------------------------------------------------------------
     $PIP_INSTALL \
+        nltk \
         spacy \
         pymorphy2 \      
         pymystem3 \
         gensim \
         && \
+    # setup nltk
+    python3.6 -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')" && \
 # ==================================================================
 # ML
 # ------------------------------------------------------------------
