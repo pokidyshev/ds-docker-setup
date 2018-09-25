@@ -21,11 +21,18 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 # python
 # ------------------------------------------------------------------
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        python3-pip \
-        python3-dev \
+        software-properties-common \
         && \
-    ln -s /usr/bin/python3 /usr/local/bin/python && \
-    pip3 --no-cache-dir install --upgrade pip && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        python3.6 \
+        python3.6-dev \
+        && \
+    wget -O ~/get-pip.py https://bootstrap.pypa.io/get-pip.py && \
+    python3.6 ~/get-pip.py && \
+    ln -s /usr/bin/python3.6 /usr/local/bin/python3 && \
+    ln -s /usr/bin/python3.6 /usr/local/bin/python && \
     python -m pip --no-cache-dir install --upgrade \
         setuptools \
         && \
