@@ -48,7 +48,7 @@ RUN python -m pip --no-cache-dir install --upgrade \
         && \
     # install Node.js
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    DEBIAN_FRONTEND=noninteractive $APT_INSTALL nodejs && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends nodejs && \
     # install labextensions
     jupyter labextension install \
         @jupyterlab/toc \
