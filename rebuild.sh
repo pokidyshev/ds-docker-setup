@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build --no-cache -t my/deepo .
+docker build --no-cache -t sandpiturtle/lab .

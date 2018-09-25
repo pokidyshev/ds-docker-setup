@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t my/deepo .
+docker build -t sandpiturtle/lab .
