@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6.0.21-devel-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 RUN rm -rf /var/lib/apt/lists/* \
            /etc/apt/sources.list.d/cuda.list \
            /etc/apt/sources.list.d/nvidia-ml.list && \
