@@ -70,9 +70,9 @@ RUN python -m pip --no-cache-dir install --upgrade \
 # pytorch & fast.ai
 # ------------------------------------------------------------------
 RUN python -m pip --no-cache-dir install --upgrade \
-        http://download.pytorch.org/whl/cu80/torch-0.3.1-cp35-cp35m-linux_x86_64.whl \
+        http://download.pytorch.org/whl/cu80/torch-0.3.1-cp36-cp36m-linux_x86_64.whl \
         torchvision \
-        tensorboardX  \
+        tensorboardX \
         && \
     python -m pip --no-cache-dir install --upgrade \
         git+https://github.com/fastai/fastai.git \
