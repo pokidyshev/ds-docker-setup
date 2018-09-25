@@ -72,12 +72,12 @@ RUN python -m pip --no-cache-dir install --upgrade \
 RUN python -m pip --no-cache-dir install --upgrade \
         http://download.pytorch.org/whl/cu80/torch-0.3.1-cp35-cp35m-linux_x86_64.whl \
         torchvision \
+        tensorboardX  \
         && \
     python -m pip --no-cache-dir install --upgrade \
         git+https://github.com/fastai/fastai.git \
         # fast.ai dependecy
         opencv-python \
-        tensorboardX  \
         && \
     # fast.ai dependecies
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
