@@ -120,7 +120,8 @@ RUN python -m pip --no-cache-dir install --upgrade \
         fbprophet \
         imgaug \
         kaggle \
-        seaborn
+        seaborn \
+        pip install -U git+https://github.com/albu/albumentations
 # ==================================================================
 # misc
 # ------------------------------------------------------------------
@@ -130,7 +131,9 @@ RUN python -m pip --no-cache-dir install --upgrade \
         requests \        
         scikit-image \
         sympy \           
-        tqdm
+        tqdm \
+        rawpy \
+        hyperopt 
 # ==================================================================
 # config & cleanup
 # ------------------------------------------------------------------
