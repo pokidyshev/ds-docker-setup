@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-runtime
 RUN rm -rf /var/lib/apt/lists/* \
            /etc/apt/sources.list.d/cuda.list \
            /etc/apt/sources.list.d/nvidia-ml.list && \
@@ -69,15 +69,15 @@ RUN python -m pip --no-cache-dir install --upgrade \
 # ==================================================================
 # pytorch & fast.ai
 # ------------------------------------------------------------------
+# RUN python -m pip --no-cache-dir install --upgrade \
+        # http://download.pytorch.org/whl/cu80/torch-0.3.1-cp36-cp36m-linux_x86_64.whl \
+        # torchvision \
+        # && \
 RUN python -m pip --no-cache-dir install --upgrade \
-        http://download.pytorch.org/whl/cu80/torch-0.3.1-cp36-cp36m-linux_x86_64.whl \
-        torchvision \
-        tensorboardX \
-        && \
-    python -m pip --no-cache-dir install --upgrade \
         git+https://github.com/fastai/fastai.git \
         # fast.ai dependecy
         opencv-python \
+        tensorboardX \
         && \
     # fast.ai dependecies
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -86,7 +86,7 @@ RUN python -m pip --no-cache-dir install --upgrade \
 # tensorflow & keras
 # ------------------------------------------------------------------
 RUN python -m pip --no-cache-dir install --upgrade \
-        tensorflow-gpu==1.4 \
+        tensorflow-gpu \
         && \
     python -m pip --no-cache-dir install --upgrade \        
         h5py \
