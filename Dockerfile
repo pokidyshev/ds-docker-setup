@@ -60,7 +60,7 @@ RUN python -m pip --no-cache-dir install --upgrade \
     jupyter labextension install \
         @jupyterlab/toc \
         @jupyterlab/git \ 
-        jupyterlab_tensorboard \
+        # jupyterlab_tensorboard \
         && \
     jupyter serverextension enable --py jupyterlab_git && \
     # Fix issue with tqdm_notebook not showing widgets
