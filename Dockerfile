@@ -121,7 +121,7 @@ RUN python -m pip --no-cache-dir install --upgrade \
         imgaug \
         kaggle \
         seaborn \
-        pip install -U git+https://github.com/albu/albumentations
+        git+https://github.com/albu/albumentations
 # ==================================================================
 # misc
 # ------------------------------------------------------------------
