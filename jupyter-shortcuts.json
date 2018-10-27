@@ -1,34 +1,40 @@
 {
-    "notebook:move-cell-up": {
-      "command": "notebook:move-cell-up",
-      "keys": [
-        "Accel Shift ArrowUp"
-      ],
-      "selector": ".jp-Notebook:focus"
-    },
-
-    "notebook:move-cell-down": {
-      "command": "notebook:move-cell-down",
-      "keys": [
-        "Accel Shift ArrowDown"
-      ],
-      "selector": ".jp-Notebook:focus"
-    },
-    
-    "notebook:collapse-selected-outputs": {
-      "command": "notebook:hide-cell-outputs",
-      "keys": [
-        "O"
-      ],
+  "notebook:move-cell-up": {
+    "command": "notebook:move-cell-up",
+    "keys": [
+      "Accel Shift ArrowUp"
+    ],
     "selector": ".jp-Notebook:focus"
-    },    
-
-    "notebook:expand-selected-outputs": {
-      "command": "notebook:show-cell-outputs",
-      "keys": [
-        "O", 
-        "O"
-      ],
-      "selector": ".jp-Notebook:focus"
-    }    
+  },
+  "notebook:move-cell-down": {
+    "command": "notebook:move-cell-down",
+    "keys": [
+      "Accel Shift ArrowDown"
+    ],
+    "selector": ".jp-Notebook:focus"
+  },
+  "notebook:collapse-selected-outputs": {
+    "command": "notebook:hide-cell-outputs",
+    "keys": [
+      "O"
+    ],
+    "selector": ".jp-Notebook:focus"
+  },
+  "notebook:expand-selected-outputs": {
+    "command": "notebook:show-cell-outputs",
+    "keys": [
+      "O",
+      "O"
+    ],
+    "selector": ".jp-Notebook:focus"
+  },
+  "kernelmenu:restart-and-clear": {
+    "command": "kernelmenu:restart-and-clear",
+    "keys": [
+      "Accel 0"
+    ],
+    "selector": "[data-jp-kernel-user]:focus",
+    "title": "Restart Kernel and Clear",
+    "category": "Kernel Operations"
+  }
 }

@@ -133,7 +133,8 @@ RUN python -m pip --no-cache-dir install --upgrade \
         sympy \           
         tqdm \
         rawpy \
-        hyperopt 
+        hyperopt \
+        coremltools
 # ==================================================================
 # config & cleanup
 # ------------------------------------------------------------------
