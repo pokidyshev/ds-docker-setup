@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-runtime
+FROM nvidia/cuda:9.0-cudnn7-runtime
 RUN rm -rf /var/lib/apt/lists/* \
            /etc/apt/sources.list.d/cuda.list \
            /etc/apt/sources.list.d/nvidia-ml.list && \
