@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime
+FROM nvidia/cuda:10.0-cudnn7-runtime
 RUN rm -rf /var/lib/apt/lists/* \
            /etc/apt/sources.list.d/cuda.list \
            /etc/apt/sources.list.d/nvidia-ml.list && \
@@ -28,9 +28,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3.6 \
         python3.6-dev \
+        python3-pip \ 
         && \
-    wget -O ~/get-pip.py https://bootstrap.pypa.io/get-pip.py && \
-    python3.6 ~/get-pip.py && \
     ln -s /usr/bin/python3.6 /usr/local/bin/python3 && \
     ln -s /usr/bin/python3.6 /usr/local/bin/python && \
     python -m pip --no-cache-dir install --upgrade \
